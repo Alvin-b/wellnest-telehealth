@@ -205,7 +205,7 @@ export function Book({ id }: { id: string }) {
   const { doctors, patientName, appointments, go } = useTele();
   const d = doctors.find((x) => x.id === id)!;
   const days = useMemo(() => Array.from({ length: 7 }, (_, i) => todayISO(i)), []);
-  const [date, setDate] = useState(days[0]);
+  const [date, setDate] = useState<string>(days[0]!);
   const [time, setTime] = useState("");
   const [type, setType] = useState<CallType>("video");
   const [reason, setReason] = useState("");
