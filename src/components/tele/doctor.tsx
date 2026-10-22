@@ -163,7 +163,7 @@ export function Call({ appointmentId }: { appointmentId: string }) {
         <span className="mt-3 rounded-full bg-call-foreground/10 px-3 py-1 text-[11px]">🔒 End-to-end encrypted</span>
       </div>
       {isVideo && (
-        <div className="absolute right-4 top-28 z-10 grid h-36 w-24 place-items-center rounded-2xl border border-call-foreground/20 bg-call text-xs opacity-90">
+        <div className="absolute bottom-32 right-4 z-10 grid h-36 w-24 place-items-center rounded-2xl border border-call-foreground/20 bg-call text-xs opacity-90">
           {cam ? "You" : <CameraOff className="h-5 w-5" />}
         </div>
       )}
