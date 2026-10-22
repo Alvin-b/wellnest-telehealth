@@ -1,24 +1,34 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { HeartPulse } from "lucide-react";
+import { PhoneApp } from "@/components/tele/PhoneApp";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "MediLink — Telemedicine: book doctors, video calls & prescriptions" },
+      { name: "description", content: "Book certified doctors, consult by video or voice, receive prescriptions and set medication reminders." },
+      { property: "og:title", content: "MediLink — Telemedicine app" },
+      { property: "og:description", content: "Book certified doctors, consult by video or voice and never miss a dose." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <main className="flex min-h-screen items-center justify-center gap-16 px-4 py-4">
+      <div className="hidden max-w-sm lg:block">
+        <div className="flex items-center gap-2 text-primary"><HeartPulse className="h-6 w-6" /><span className="font-display text-lg font-bold">MediLink</span></div>
+        <h1 className="mt-6 text-5xl font-extrabold leading-tight">A doctor in your pocket.</h1>
+        <p className="mt-4 text-muted-foreground">Find certified doctors, book a slot, pay with M-Pesa, take the video or voice call, then get prescriptions with smart dose reminders.</p>
+        <ul className="mt-6 space-y-2 text-sm text-muted-foreground">
+          <li>• Try as a patient: book, join call, rate, see meds</li>
+          <li>• Try as a doctor: list yourself, call, prescribe</li>
+        </ul>
+      </div>
+      <PhoneApp />
+    </main>
   );
 }
