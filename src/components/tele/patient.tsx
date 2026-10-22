@@ -137,7 +137,7 @@ function DoctorRow({ id }: { id: string }) {
   );
 }
 
-export function Doctors({ specialty }: { specialty?: string }) {
+export function Doctors({ specialty }: { specialty?: string | undefined }) {
   const { doctors } = useTele();
   const [filter, setFilter] = useState(SPECIALTIES.some((s) => s.name === specialty) ? specialty! : "All");
   const [q, setQ] = useState(SPECIALTIES.some((s) => s.name === specialty) ? "" : specialty ?? "");
@@ -371,7 +371,7 @@ export function Rate({ appointmentId }: { appointmentId: string }) {
         <Btn className="w-full" onClick={() => {
           set((s) => ({
             appointments: s.appointments.map((x) => (x.id === a.id ? { ...x, rated: true } : x)),
-            doctors: s.doctors.map((x) => x.id === d.id ? { ...x, reviews: [{ author: patientName.split(" ")[0], rating, text: text || "Great consultation." }, ...x.reviews], rating: (x.rating * x.reviews.length + rating) / (x.reviews.length + 1) || rating } : x),
+            doctors: s.doctors.map((x) => x.id === d.id ? { ...x, reviews: [{ author: patientName.split(" ")[0] ?? "Patient", rating, text: text || "Great consultation." }, ...x.reviews], rating: (x.rating * x.reviews.length + rating) / (x.reviews.length + 1) || rating } : x),
           }));
           toast.success("Thanks for your review!");
           go({ name: "appointments" });
@@ -387,7 +387,7 @@ export function Meds() {
   const updateMed = (pid: string, mid: string, fn: (m: Prescription["meds"][number]) => Prescription["meds"][number]) =>
     set((s) => ({ prescriptions: s.prescriptions.map((p) => p.id !== pid ? p : { ...p, meds: p.meds.map((m) => (m.id === mid ? fn(m) : m)) }) }));
   const enableNotifs = async () => {
-    if (typeof Notification === "undefined") return toast("Notifications not supported here — in-app alerts will be used.");
+    if (typeof Notification === "undefined") { toast("Notifications not supported here — in-app alerts will be used."); return; }
     const r = await Notification.requestPermission();
     toast(r === "granted" ? "Phone notifications on" : "We'll remind you inside the app");
   };

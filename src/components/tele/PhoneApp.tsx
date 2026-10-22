@@ -56,7 +56,7 @@ function useReminders() {
         if (typeof Notification !== "undefined" && Notification.permission === "granted") new Notification("Medication reminder", { body: msg });
       }));
       appointments.filter((a) => a.status === "upcoming" && a.date === today).forEach((a) => {
-        const [h, mi] = a.time.split(":").map(Number);
+        const [h = 0, mi = 0] = a.time.split(":").map(Number);
         const t = new Date(); t.setHours(h, mi - 10, 0);
         if (t.toTimeString().slice(0, 5) === now && !fired.has(a.id)) {
           fired.add(a.id);

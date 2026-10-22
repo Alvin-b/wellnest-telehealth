@@ -7,7 +7,7 @@ import {
 export type Screen =
   | { name: "welcome" }
   | { name: "home" }
-  | { name: "doctors"; specialty?: string }
+  | { name: "doctors"; specialty?: string | undefined }
   | { name: "doctor"; id: string }
   | { name: "book"; id: string }
   | { name: "pay"; appointment: Appointment }
@@ -92,7 +92,7 @@ export function TeleProvider({ children }: { children: ReactNode }) {
 
   const value: Ctx = {
     ...state,
-    screen: stack[stack.length - 1],
+    screen: stack[stack.length - 1]!,
     go: (s) => setStack((st) => (["home", "appointments", "meds", "chats", "profile", "doc-home", "welcome"].includes(s.name) ? [s] : [...st, s])),
     back: () => setStack((st) => (st.length > 1 ? st.slice(0, -1) : st)),
     set: (fn) => setState((s) => ({ ...s, ...fn(s) })),
