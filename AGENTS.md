@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- The telemedicine app is a single-route phone-frame SPA: screens switch via an in-memory stack in `src/lib/tele/store.tsx` (persisted to localStorage) — keeps the demo self-contained until a backend is added.
