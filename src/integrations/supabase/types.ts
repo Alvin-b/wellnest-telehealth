@@ -14,13 +14,169 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      bookings: {
+        Row: {
+          call_type: string
+          created_at: string
+          doctor_id: string
+          fee: number
+          id: string
+          patient_id: string
+          patient_name: string
+          payment_status: string
+          reason: string
+          starts_at: string
+          status: string
+        }
+        Insert: {
+          call_type: string
+          created_at?: string
+          doctor_id: string
+          fee: number
+          id?: string
+          patient_id: string
+          patient_name: string
+          payment_status?: string
+          reason: string
+          starts_at: string
+          status?: string
+        }
+        Update: {
+          call_type?: string
+          created_at?: string
+          doctor_id?: string
+          fee?: number
+          id?: string
+          patient_id?: string
+          patient_name?: string
+          payment_status?: string
+          reason?: string
+          starts_at?: string
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "bookings_doctor_id_fkey"
+            columns: ["doctor_id"]
+            isOneToOne: false
+            referencedRelation: "doctor_listings"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "bookings_patient_id_fkey"
+            columns: ["patient_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      doctor_listings: {
+        Row: {
+          bio: string
+          created_at: string
+          fee: number
+          id: string
+          license: string
+          name: string
+          specialty: string
+          user_id: string
+          years: number
+        }
+        Insert: {
+          bio?: string
+          created_at?: string
+          fee: number
+          id?: string
+          license: string
+          name: string
+          specialty: string
+          user_id: string
+          years: number
+        }
+        Update: {
+          bio?: string
+          created_at?: string
+          fee?: number
+          id?: string
+          license?: string
+          name?: string
+          specialty?: string
+          user_id?: string
+          years?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "doctor_listings_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: true
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          display_name: string
+          id: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          display_name?: string
+          id: string
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          display_name?: string
+          id?: string
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          role: string
+          user_id: string
+        }
+        Insert: {
+          role: string
+          user_id: string
+        }
+        Update: {
+          role?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      book_visit: {
+        Args: {
+          p_doctor: string
+          p_reason: string
+          p_starts_at: string
+          p_type: string
+        }
+        Returns: string
+      }
+      cancel_visit: { Args: { p_booking: string }; Returns: undefined }
+      register_doctor: {
+        Args: {
+          p_bio: string
+          p_fee: number
+          p_license: string
+          p_name: string
+          p_specialty: string
+          p_years: number
+        }
+        Returns: string
+      }
     }
     Enums: {
       [_ in never]: never
