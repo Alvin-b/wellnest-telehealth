@@ -1,0 +1,5 @@
+- [ ] Add real sign-up, sign-in, password recovery and private profiles.
+- [ ] Add saved doctor listings and appointments with conflict protection.
+- [ ] Verify signed-in writes and private-data access.
+- [ ] Real calls and payments: subsequent phase needs provider connections.
+- [ ] Clinical workflows and uploaded archive extras: subsequent phase needs Cloud integration.

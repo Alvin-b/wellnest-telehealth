@@ -1,0 +1,12 @@
+{
+  "source": "careconnect-telemedicine-main.zip",
+  "capabilities": [
+    {"capability":"code", "source":"MediLink demo archive", "outcome":"Retain phone-frame presentation; implement real accounts and bookings first", "status":"in_progress", "next_action":"Verify account and booking flow"},
+    {"capability":"schema and records", "source":"local demo state only", "outcome":"Create Cloud profiles, doctor listings and appointments without importing fictional medical records", "status":"in_progress", "next_action":"Apply schema and verify writes"},
+    {"capability":"auth identities and authorization", "source":"mock roles, no existing auth identities", "outcome":"Cloud email, Google and Lovable sign-in with private profile access", "status":"in_progress", "next_action":"Verify signed-in access"},
+    {"capability":"calls and payments", "source":"simulated call screens and payment timers", "outcome":"Keep explicitly unavailable in real mode until providers are connected", "status":"pending", "next_action":"Connect real call and payment services in subsequent phase"},
+    {"capability":"prescriptions, chat, reminders, uploaded bytes and advanced screens", "source":"local demo flows and metadata only", "outcome":"Preserved through explicit demo mode, not represented as live features", "status":"pending", "next_action":"Connect clinical workflows and private file storage in subsequent phase"},
+    {"capability":"external providers, endpoints, callbacks, webhooks, schedules and secrets", "source":"no production service detected; prescribing lookup exists only in archive", "outcome":"No production provider cutover required for first phase", "status":"not_applicable", "next_action":"Review archive prescribing lookup when migrating prescriptions"},
+    {"capability":"cutover and verification", "source":"unpublished demo", "outcome":"Preview first, no automatic publish", "status":"pending", "next_action":"Verify first-phase account and booking behavior"}
+  ]
+}
